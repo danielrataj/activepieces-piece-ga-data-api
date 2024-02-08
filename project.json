@@ -1,0 +1,43 @@
+{
+  "name": "pieces-ga-data-api",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/pieces/community/ga-data-api/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/pieces/community/ga-data-api",
+        "tsConfig": "packages/pieces/community/ga-data-api/tsconfig.lib.json",
+        "packageJson": "packages/pieces/community/ga-data-api/package.json",
+        "main": "packages/pieces/community/ga-data-api/src/index.ts",
+        "assets": [
+          "packages/pieces/community/ga-data-api/*.md"
+        ],
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs pieces-ga-data-api {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/pieces/community/ga-data-api/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
